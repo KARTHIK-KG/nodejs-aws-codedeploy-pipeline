@@ -1,36 +1,32 @@
-const http = require('http');
+const express = require('express');
+const app = express();
+const hostname = '3.111.41.89';
+const port = 3000;
+const version = '3,000,000';
 
-const server = http.createServer((req, res) => {
-    if (req.url === '/') {
-        // Serve the HTML content as a string
-        const htmlContent = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Simple Node.js Web Page</title>
-            </head>
-            <body>
-                <button id="clickButton">Click Here</button>
-                <p id="message"></p>
+app.get('/', (req, res) => {
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Simple Node.js Web Page</title>
+        </head>
+        <body>
+            <button id="clickButton">Click Here</button>
+            <p id="message"></p>
 
-                <script>
-                    document.getElementById("clickButton").addEventListener("click", function() {
-                        document.getElementById("message").textContent = "Welcome! to Code-D Backend Test";
-                    });
-                </script>
-            </body>
-            </html>
-        `;
+            <script>
+                document.getElementById("clickButton").addEventListener("click", function() {
+                    document.getElementById("message").textContent = "Welcome to Code-D Test Portal :)";
+                });
+            </script>
+        </body>
+        </html>
+    `);
 
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(htmlContent);
-    } else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Not Found');
-    }
+    console.log(`[Version ${version}]: New request => http://${hostname}:${port}` + req.url);
 });
 
-const port = 3000;
-server.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, () => {
+    console.log(`[Version ${version}]: Server running at http://${hostname}:${port}/`);
 });
