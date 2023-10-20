@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define an array to store user data (replace with a database in a production environment).
 const users = [
-    { username: 'karthik', password: '12345' },
+    { username: 'karthik', password: '123456' },
     { username: 'admin', password: 'admin' },
 ];
 
